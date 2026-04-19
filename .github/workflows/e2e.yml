@@ -1,13 +1,19 @@
 name: e2e
 
+# Runs only when code lands on main (post-merge) and on a recurring schedule.
+# PRs do NOT trigger this workflow — by design.
+
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
   schedule:
-    - cron: '0 13 * * *'  # daily 13:00 UTC
+    # Every 6 hours (00:00, 06:00, 12:00, 18:00 UTC) against prod
+    - cron: '0 */6 * * *'
   workflow_dispatch:
+
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   public-suite:
@@ -23,12 +29,20 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - name: Run public suite
-        run: npx playwright test --project=api --project=marketing --project=protected --project=onboarding
+      - name: Run public suite (unauth-safe projects)
+        run: |
+          npx playwright test \
+            --project=api \
+            --project=marketing \
+            --project=protected \
+            --project=onboarding
       - name: Upload report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report
+          name: playwright-report-${{ github.run_id }}
           path: playwright-report
-          retention-days: 7
+          retention-days: 14
+      - name: Notify on failure
+        if: failure() && github.event_name == 'schedule'
+        run: echo "::warning::Scheduled e2e run failed — check the uploaded playwright-report artifact"
