@@ -1,0 +1,102 @@
+/**
+ * Central selector map for rapidtriage.me
+ * All spec files import from here — never hardcode selectors in tests.
+ * Update this file when the UI changes; only affected flow files need re-running.
+ */
+
+export const Selectors = {
+  auth: {
+    emailInput: '#email',
+    passwordInput: '#password',
+    loginButton: '#loginBtn',
+    googleSSOButton: '#googleBtn',
+    githubSSOButton: '#githubBtn',
+    errorMessage: '#error, .error, [role="alert"], .error-message',
+    successMessage: '#success, .success, .success-message',
+  },
+  nav: {
+    signInLink: 'a[href*="login"]',
+    getStartedLink: 'a[href*="signup"]',
+    userAvatar: '#userAvatar, .user-avatar, [data-testid="user-avatar"]',
+    logoutButton: '#logoutBtn, button:has-text("Logout"), button:has-text("Sign Out")',
+    dashboardLink: 'a[href*="dashboard"]',
+    pricingLink: 'a[href*="pricing"], a[href="#pricing"]',
+  },
+  marketing: {
+    heroHeading: 'h1, .hero h1',
+    ctaButton: 'a[href*="signup"], a:has-text("Start Free"), a:has-text("Get Started")',
+    featuresSection: '#features, section.features',
+    featuresHeading: '#features h2, section.features h2',
+    pricingSection: '#pricing, section.pricing',
+    pricingHeading: '#pricing h2, section.pricing h2',
+    pricingGrid: '#pricingGrid, .pricing-grid',
+    pricingTierFree: '.price-card',
+    pricingTierPro: '.price-card:has(h2:text("Pro")), .price-card.popular',
+    pricingTierTeam: '.price-card:has(h2:text("Team"))',
+    pricingTierEnterprise: '.price-card:has(h2:text("Enterprise")), .price-card:last-child',
+    navLinks: 'nav a, header a',
+    pricingAmounts: '.price-amount',
+  },
+  mcp: {
+    apiTokenInput: '#apiToken, input[name="apiToken"], input[placeholder*="token"]',
+    mcpEndpoint: '.mcp-endpoint, code:has-text("/mcp")',
+  },
+  settings: {
+    loadingState: '#loadingState',
+    settingsContent: '#settingsContent',
+    accountDisplayName: '#accountDisplayName',
+    accountEmail: '#accountEmail',
+    themeToggle: '#themeToggle',
+    notifyEmail: '#notifyEmail',
+    notifyPush: '#notifyPush',
+    toast: '#toast',
+  },
+  apiKeys: {
+    keysList: '#keysList',
+    toast: '#toast',
+  },
+  team: {
+    toast: '#toast',
+  },
+  profile: {
+    profileAvatar: '#profileAvatar',
+    profileName: '#profileName',
+    profileEmail: '#profileEmail',
+    profileBadge: '#profileBadge',
+    alertContainer: '#alertContainer',
+    generalTab: '#generalTab',
+    securityTab: '#securityTab',
+    subscriptionTab: '#subscriptionTab',
+    usageTab: '#usageTab',
+    profileForm: '#profileForm',
+    inputName: '#inputName',
+    inputEmail: '#inputEmail',
+    inputCompany: '#inputCompany',
+    passwordForm: '#passwordForm',
+    currentPassword: '#currentPassword',
+    newPassword: '#newPassword',
+    confirmPassword: '#confirmPassword',
+    apiCallsToday: '#apiCallsToday',
+    apiCallsMonth: '#apiCallsMonth',
+    storageUsed: '#storageUsed',
+    activeKeys: '#activeKeys',
+  },
+  reports: {
+    reportCount: '#reportCount',
+    searchInput: '#searchInput',
+    reportsContainer: '#reportsContainer',
+  },
+  github: {
+    toast: '#toast',
+  },
+  sidebar: {
+    navLighthouse: '#navLighthouse',
+    navApiKeys: '#navApiKeys',
+    navGithub: '#navGithub',
+    navTeam: '#navTeam',
+    navBilling: '#navBilling',
+    userName: '#userName',
+    userTier: '#userTier',
+    userAvatar: '#userAvatar',
+  },
+};
